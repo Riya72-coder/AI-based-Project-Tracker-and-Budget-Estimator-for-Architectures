@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Project</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- 🔥 NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="projects.html">
+        <img src="images/logo.png" class="logo-img">
+      </a>
+      <h1>AI Project Tracker</h1>
+    </div>
+
+    <div class="navbar-user">
+      <span>👋 Welcome <span id="userName">User</span></span>
+
+      <a href="profile.html">
+        <img src="https://i.pravatar.cc/40" class="user-avatar">
+      </a>
+
+      <a href="#" id="logoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ✅ SUCCESS POPUP -->
+  <div id="successMsg" style="
+    display:none;
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#00ffcc;
+    color:#000;
+    padding:12px 20px;
+    border-radius:8px;
+    font-weight:bold;
+    z-index:9999;
+  ">
+    Project Added Successfully 🚀
+  </div>
+
+  <!-- 🔥 MAIN -->
+  <main>
+    <div class="form-container">
+      <h2>Add New Project</h2>
+
+      <form id="projectForm" enctype="multipart/form-data">
+
+        <label>Project Name</label>
+        <input type="text" id="name" placeholder="Project Name" required>
+
+        <label>Description</label>
+        <textarea id="description" placeholder="Description" required></textarea>
+
+        <label>Deadline</label>
+        <input type="date" id="deadline" required>
+
+        <!-- ✅ FIXED STATUS -->
+        <label>Status</label>
+        <select id="status">
+          <option value="Pending" selected>Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Delayed">Delayed</option>
+        </select>
+
+        <label>Upload Image</label>
+        <input type="file" id="image">
+
+        <img id="preview" style="display:none; width:100%; margin-top:10px;">
+
+        <button type="submit">Add Project</button>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- 🔻 FOOTER -->
+  <footer>
+    <ul class="nav-links">
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <p>© 2025 AI Project Tracker</p>
+  </footer>
+
+  <script src="js/addProject.js" defer></script>
+  <script src="js/commonnavbar.js"></script>
+
+</body>
+</html>

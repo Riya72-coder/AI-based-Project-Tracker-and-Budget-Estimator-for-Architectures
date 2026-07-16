@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Task | AI Project Tracker</title>
+
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <!-- 🔥 FIX: logoLink (duplicate id removed) -->
+    <a id="logoLink">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+    <h1>AI Project Tracker</h1>
+  </div>
+
+  <ul class="nav-links">
+    <!-- 🔥 FIX: only ONE dashboardNavLink -->
+    <li><a id="dashboardNavLink">Dashboard</a></li>
+    <li><a id="addTaskNav">Add Task</a></li>
+    <li><a id="manageTaskNav" class="active">Manage Tasks</a></li>
+  </ul>
+
+  <!-- USER -->
+  <div class="navbar-user">
+    <span>
+      👋 Welcome <span id="userName">User</span>
+    </span>
+
+    <!-- 🔥 ONLY FIX: src removed -->
+    <img 
+         class="user-avatar" 
+         id="profileBtn">
+
+    <!-- LOGOUT -->
+    <i class="fas fa-sign-out-alt" id="logoutBtn"></i>
+  </div>
+</nav>
+
+<!-- FORM -->
+<section class="form-container">
+
+  <h2>Edit Task</h2>
+
+  <form id="editForm">
+
+    <label>Task Name:</label>
+    <input type="text" id="taskName" required>
+
+    <label>Description:</label>
+    <textarea id="taskDesc"></textarea>
+
+    <label>Assigned To:</label>
+    <input type="text" id="taskAssigned">
+
+    <label>Start Date:</label>
+    <input type="date" id="taskStartDate">
+
+    <label>Deadline:</label>
+    <input type="date" id="taskDeadline" required>
+
+    <label>Cost (₹):</label>
+    <input type="number" id="taskCost">
+
+    <label>Priority:</label>
+    <select id="taskPriority">
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+
+    <label>Status:</label>
+    <select id="taskStatus">
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+
+    <label>Progress (%):</label>
+    <input type="number" id="taskProgress" min="0" max="100">
+
+    <button type="submit">Update Task</button>
+
+  </form>
+
+</section>
+
+<!-- SCRIPTS -->
+<script src="js/commonnavbar.js" defer></script>
+<script src="js/editTask.js" defer></script>
+
+
+
+</body>
+</html>

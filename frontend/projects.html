@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select a Project | AI Project Tracker</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <!-- JS -->
+  <script src="js/projects.js" defer></script>
+  <script src="js/commonnavbar.js"></script>
+  <script src="js/notifications.js" defer></script>
+</head>
+
+<body>
+
+  <!-- 🔹 NAVBAR -->
+  <nav class="navbar">
+    
+    <!-- LOGO -->
+    <div class="logo">
+      <a href="projects.html">
+        <img src="Images/logo.png" class="logo-img">
+      </a>
+      <h1>AI Project Tracker</h1>
+    </div>
+
+    <!-- 🔍 SEARCH + FILTER GROUP -->
+    <div class="navbar-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search projects...">
+
+      <!-- 🔥 ADMIN FILTER -->
+      <select id="userFilter" style="display:none;">
+        <option value="all">All Users</option>
+      </select>
+    </div>
+
+    <!-- 👤 USER -->
+    <div class="navbar-user">
+
+      <span>
+        👋 <span id="welcomeText">Welcome User</span>
+        <span id="roleBadge" class="role-badge">USER</span>
+      </span>
+
+      <a href="admin.html" id="adminPanelBtn" title="Admin Panel" style="display:none;">
+        <i class="fa-solid fa-user-shield"></i>
+      </a>
+
+      <!-- 🔔 NOTIFICATION BELL -->
+      <div style="position:relative;">
+        <a href="javascript:void(0)" id="bellIcon">
+          <i class="fa-regular fa-bell"></i>
+          <span id="notifCount" class="notif-count">0</span>
+        </a>
+
+        <!-- 🔽 DROPDOWN -->
+        <div id="notifDropdown" class="notif-dropdown">
+          <ul id="notifList"></ul>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <a href="profile.html">
+        <img src="https://i.pravatar.cc/40" class="user-avatar">
+      </a>
+
+      <!-- LOGOUT -->
+      <a href="#" id="logoutBtn" title="Logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- 🔹 MAIN -->
+  <main class="dashboard">
+
+    <header class="project-header">
+      <h1>Your Projects</h1>
+
+      <a href="addProject.html" class="add-project-btn">
+        + Add Project
+      </a>
+    </header>
+
+    <div class="project-grid" id="projectGrid">
+
+      <div class="project-card empty-card">
+        <p>No projects yet 🚀</p>
+        <p style="font-size:12px; opacity:0.7;">
+          Click "Add Project" to get started
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <p>© 2025 AI Project Tracker for Architecture</p>
+  </footer>
+
+
+
+ <!-- ================= ARCHIAI FLOAT BUTTON ================= -->
+
+<div id="chat-toggle" title="Open ArchiAI">
+    🤖
+</div>
+
+<!-- ================= ARCHIAI SIDEBAR ================= -->
+
+<div id="chat-container">
+
+    <!-- HEADER -->
+
+    <div id="chat-header">
+
+        <div class="chat-brand">
+
+            <div class="chat-logo">
+                🤖
+            </div>
+
+            <div class="chat-info">
+
+                <h3>ArchiAI</h3>
+
+                <p>Architecture Intelligence</p>
+
+                <div class="chat-status">
+                    <span class="online-dot"></span>
+                    Online
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-actions">
+
+            <span id="chat-minimize" title="Minimize">
+                <i class="fa-solid fa-minus"></i>
+            </span>
+
+            <div class="chat-menu">
+
+                <span id="menu-toggle">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </span>
+
+                <div id="menu-dropdown">
+
+                    <div onclick="exportChat()">
+                        <i class="fa-solid fa-download"></i>
+                        Export Chat
+                    </div>
+
+                    <div onclick="aboutAI()">
+                        <i class="fa-solid fa-circle-info"></i>
+                        About ArchiAI
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= CHATGPT STYLE BODY ================= -->
+
+    <div id="chat-main-wrapper">
+
+        <!-- HISTORY SIDEBAR -->
+
+        <div id="chat-history-sidebar">
+
+            <div class="history-header">
+
+                <button id="new-chat-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    New Chat
+                </button>
+
+                <div class="history-label">
+                    Recent Chats
+                </div>
+
+                <input
+                    type="text"
+                    id="history-search"
+                    placeholder="Search Chats..."
+                >
+
+            </div>
+
+            <div id="history-list">
+
+                <!-- History Auto Loaded From MySQL -->
+
+            </div>
+
+        </div>
+
+        <!-- CHAT PANEL -->
+
+        <div id="chat-right-panel">
+
+            <div id="chat-box">
+
+                <div class="bot-msg welcome-msg">
+
+                    👋 Hi, I'm <b>ArchiAI</b>
+
+                    <br><br>
+
+                    Try asking:
+
+                    <br>📊 Project Insights
+                    <br>🔥 Most Important Project
+                    <br>📅 Nearest Deadline
+                    <br>🚨 Future Risk Projects
+                    <br>📁 Show All Projects
+                    <br>⚠️ Delayed Projects
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- QUICK ACTIONS -->
+
+    <div id="chat-suggestions">
+
+        <button onclick="quickMsg('Show project insights')">
+            📊 Insights
+        </button>
+
+        <button onclick="quickMsg('Show delayed projects')">
+            ⚠️ Delayed
+        </button>
+
+        <button onclick="quickMsg('Portfolio health')">
+            📈 Health
+        </button>
+
+        <button onclick="quickMsg('Most important project')">
+            🔥 Priority
+        </button>
+
+        <button onclick="quickMsg('Nearest deadline')">
+            📅 Deadline
+        </button>
+
+        <button onclick="quickMsg('Future risk projects')">
+            🚨 Future Risk
+        </button>
+
+    </div>
+
+    <!-- INPUT -->
+
+    <div id="chat-input-area">
+
+        <input
+            type="text"
+            id="user-input"
+            placeholder="Ask about projects, deadlines, risks..."
+        >
+
+        <button onclick="sendMessage()">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="css/chatbot.css">
+<script src="js/chatbot.js"></script>
+
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

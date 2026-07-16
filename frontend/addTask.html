@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Task | AI Project Tracker</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <div class="logo">
+    <a id="dashboardNav">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+    <h1>AI Project Tracker</h1>
+  </div>
+
+  <ul class="nav-links">
+    <li><a id="dashboardNavLink">Dashboard</a></li>
+    <li><a class="active">Add Task</a></li>
+    <li><a id="manageTaskNav">Manage Tasks</a></li>
+  </ul>
+
+  <div class="navbar-user">
+    <span>👋 Welcome <span id="userName">User</span></span>
+    <a href="profile.html">
+      <img src="https://i.pravatar.cc/40" class="user-avatar">
+    </a>
+    <a href="#" id="logoutBtn">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </a>
+  </div>
+</nav>
+
+
+<!-- ================= FORM ================= -->
+<section class="form-container">
+
+  <h2>Add New Task</h2>
+
+  <form id="taskForm">
+
+    <label>Task Name:</label>
+    <input type="text" id="taskName" placeholder="Enter task name" required>
+
+    <label>Description:</label>
+    <textarea id="taskDesc" rows="3" placeholder="Enter description"></textarea>
+
+    <label>Assigned To:</label>
+    <input type="text" id="taskAssigned" placeholder="Assign person">
+
+    <label>Start Date:</label>
+    <input type="date" id="taskStartDate">
+
+    <label>Deadline:</label>
+    <input type="date" id="taskDeadline" required>
+
+    <label>Cost (₹):</label>
+    <input type="number" id="taskCost" placeholder="Enter cost">
+
+    <label>Priority:</label>
+    <select id="taskPriority">
+      <option value="Low">Low</option>
+      <option value="Medium" selected>Medium</option>
+      <option value="High">High</option>
+    </select>
+
+    <label>Status:</label>
+    <select id="taskStatus">
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+
+    <label>Progress (%):</label>
+    <input type="number" id="taskProgress" min="0" max="100" placeholder="0 - 100">
+
+    <button type="submit">Save Task</button>
+
+  </form>
+
+</section>
+
+<!-- ================= JS ================= -->
+<script src="js/addTask.js"></script>
+<script src="js/commonnavbar.js"></script>
+
+
+</body>
+</html>

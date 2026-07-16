@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | AI Project Tracker</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- JS -->
+  <script src="js/auth.js" defer></script>
+</head>
+
+<body>
+  <!-- 🔹 NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo-img" />
+      <span>AI Project Tracker</span>
+    </div>
+  </nav>
+
+  <!-- 🔹 REGISTER SECTION -->
+  <section class="register-section">
+    <div class="register-card">
+      <h2>Client Registration</h2>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input 
+            type="text" 
+            id="name" 
+            placeholder="Enter your full name" 
+            required 
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="Enter your email" 
+            required 
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company Name:</label>
+          <input 
+            type="text" 
+            id="company" 
+            placeholder="Enter company name" 
+            required 
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Enter password" 
+            required 
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input 
+            type="password" 
+            id="confirmPassword" 
+            placeholder="Confirm your password" 
+            required 
+          />
+        </div>
+
+        <button type="submit" class="btn-send">Register</button>
+      </form>
+
+      <p class="register-link">
+        Already registered?
+        <a href="index.html">Login here</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 🔹 FOOTER -->
+  <footer class="footer">
+    <p>© 2025 AI Project Tracker | Designed by VisionCoders Team</p>
+  </footer>
+</body>
+</html>
