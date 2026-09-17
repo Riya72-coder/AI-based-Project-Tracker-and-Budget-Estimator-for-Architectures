@@ -371,11 +371,18 @@ export default function Projects() {
           })
         )}
 
+        {/* + ADD PROJECT CARD — only for non-admin users */}
         {!isAdmin && (
-          <div className="project-card empty-card" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "40px", border: "2px dashed var(--border)", cursor: "default" }}>
-            <div className="project-card-content" style={{ textAlign: "center" }}>
-              <h3>🚀 More Projects Coming Soon</h3>
-              <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>Stay tuned for upcoming ideas!</p>
+          <div
+            className="project-card add-project-card"
+            onClick={() => setShowAddModal(true)}
+            title="Add new project"
+          >
+            <div className="add-project-inner">
+              <div className="add-project-icon">
+                <i className="fa-solid fa-plus"></i>
+              </div>
+              <span className="add-project-label">New Project</span>
             </div>
           </div>
         )}

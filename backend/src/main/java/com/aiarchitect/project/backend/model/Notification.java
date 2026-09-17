@@ -17,6 +17,9 @@ public class Notification {
 
     private boolean isRead = false;
 
+    // Deep-link URL for actionable notifications (null = informational, show inline)
+    private String linkUrl;
+
     private LocalDateTime createdAt = LocalDateTime.now();
 
     // ===== CONSTRUCTOR =====
@@ -27,6 +30,14 @@ public class Notification {
         this.message = message;
         this.isRead = false;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public Notification(String userEmail, String message, String linkUrl) {
+        this.userEmail = userEmail;
+        this.message = message;
+        this.isRead = false;
+        this.createdAt = LocalDateTime.now();
+        this.linkUrl = linkUrl;
     }
 
     // ===== GETTERS & SETTERS =====
@@ -63,8 +74,15 @@ public class Notification {
         return createdAt;
     }
 
-    // 🔥 THIS FIXES YOUR ERROR
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getLinkUrl() {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
     }
 }

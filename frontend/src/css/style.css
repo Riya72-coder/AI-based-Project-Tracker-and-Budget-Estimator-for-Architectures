@@ -2082,86 +2082,209 @@ footer {
 
 
 
-/* ================= 🔔 NOTIFICATION ================= */
+/* ================= 🔔 NOTIFICATION SYSTEM ================= */
 
+/* Dropdown container */
 .notif-dropdown {
   position: absolute;
-  top: 40px;
+  top: 44px;
   right: 0;
-  width: 300px;
-  max-height: 400px;
+  width: 340px;
+  max-height: 480px;
   overflow-y: auto;
   background: #0a0f1c;
-  border-radius: 12px;
+  border-radius: 14px;
   display: none;
-  padding: 10px;
-  z-index: 999;
-
-  /* 🔥 NEW */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  padding: 0;
+  z-index: 1000;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 170, 255, 0.2);
+  animation: notifSlideDown 0.2s ease;
 }
 
-/* LIST */
+@keyframes notifSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header bar */
+.notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid rgba(0, 170, 255, 0.15);
+}
+
+.notif-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00aaff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.notif-mark-all {
+  background: none;
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  color: #00aaff;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.notif-mark-all:hover {
+  background: rgba(0, 170, 255, 0.15);
+  border-color: #00aaff;
+}
+
+/* List */
 .notif-dropdown ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 6px 0;
 }
 
-/* ITEM */
-.notif-dropdown li {
-  padding: 10px;
-  border-bottom: 1px solid #222;
+/* Base item layout */
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.2s, border-left 0.2s;
+  border-left: 3px solid transparent;
+  position: relative;
 }
 
-/* HOVER */
-.notif-dropdown li:hover {
+/* ACTIONABLE — blue left border + arrow */
+.notif-item.notif-actionable {
+  border-left-color: #00aaff;
+}
+.notif-item.notif-actionable:hover {
   background: rgba(0, 170, 255, 0.1);
 }
 
-/* UNREAD */
-.notif-dropdown li.unread {
-  font-weight: bold;
-  color: #00aaff;
+/* INFORMATIONAL — amber left border */
+.notif-item.notif-informational {
+  border-left-color: #f5a623;
+}
+.notif-item.notif-informational:hover {
+  background: rgba(245, 166, 35, 0.08);
 }
 
-/* EMPTY */
+/* Expanded state */
+.notif-item.notif-expanded {
+  background: rgba(245, 166, 35, 0.06);
+}
+
+/* Type icon (🔗 or ℹ️) */
+.notif-type-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Content area */
+.notif-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.notif-message {
+  font-size: 0.83rem;
+  color: #e0e6f0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.notif-time {
+  font-size: 0.72rem;
+  color: #556;
+}
+
+/* Arrow for actionable items */
+.notif-arrow {
+  font-size: 1.3rem;
+  color: #00aaff;
+  flex-shrink: 0;
+  align-self: center;
+  opacity: 0.7;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.notif-item.notif-actionable:hover .notif-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Inline expanded detail panel (informational) */
+.notif-inline-detail {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: rgba(245, 166, 35, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  font-size: 0.8rem;
+  color: #ccc;
+  line-height: 1.5;
+  animation: expandIn 0.2s ease;
+}
+
+@keyframes expandIn {
+  from { opacity: 0; transform: scaleY(0.8); transform-origin: top; }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+
+.notif-inline-detail p {
+  margin: 0 0 6px;
+  color: #e0e6f0;
+}
+
+/* Empty state */
 .notif-dropdown li.empty {
   text-align: center;
-  color: #888;
+  padding: 24px 16px;
+  color: #556;
   cursor: default;
+  font-size: 0.85rem;
 }
 
 /* 🔴 COUNT BADGE */
 .notif-count {
-  background: red;
+  background: linear-gradient(135deg, #ff4757, #e84393);
   color: white;
   border-radius: 50%;
-  font-size: 10px;
-  padding: 3px 6px;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 5px;
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: -6px;
+  right: -8px;
+  min-width: 16px;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(255, 71, 87, 0.6);
 }
 
-/* 🔔 BELL WRAPPER (IMPORTANT) */
+/* 🔔 BELL WRAPPER */
 #bellIcon {
   position: relative;
   cursor: pointer;
 }
 
-/* SCROLLBAR (optional but sexy 😎) */
+/* SCROLLBAR */
 .notif-dropdown::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
-
 .notif-dropdown::-webkit-scrollbar-thumb {
-  background: #00aaff;
+  background: rgba(0, 170, 255, 0.4);
   border-radius: 10px;
 }
+
 
 
 
@@ -3244,3 +3367,63 @@ button,
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* ================= ➕ ADD PROJECT CARD ================= */
+
+.add-project-card {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  border: 2px dashed rgba(0, 170, 255, 0.35) !important;
+  background: rgba(0, 170, 255, 0.03) !important;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s, box-shadow 0.25s;
+  box-shadow: none !important;
+}
+
+.add-project-card:hover {
+  border-color: rgba(0, 170, 255, 0.75) !important;
+  background: rgba(0, 170, 255, 0.07) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 170, 255, 0.15) !important;
+}
+
+.add-project-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.add-project-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(0, 170, 255, 0.12);
+  border: 2px solid rgba(0, 170, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #00aaff;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.add-project-card:hover .add-project-icon {
+  background: rgba(0, 170, 255, 0.22);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.add-project-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #00aaff;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.add-project-card:hover .add-project-label {
+  opacity: 1;
+}

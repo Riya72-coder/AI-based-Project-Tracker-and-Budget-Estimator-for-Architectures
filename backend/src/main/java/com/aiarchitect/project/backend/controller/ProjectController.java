@@ -81,12 +81,13 @@ public class ProjectController {
 
             projectRepository.save(project);
 
-            // 🔥 ADMIN NOTIFICATION (ADD)
+            // 🔥 ADMIN NOTIFICATION (ADD) — actionable: navigate to the new project's dashboard
             Notification n = new Notification();
             n.setUserEmail("ADMIN");
             n.setMessage("New Project Added: " + project.getName());
             n.setRead(false);
             n.setCreatedAt(LocalDateTime.now());
+            n.setLinkUrl("/dashboard/" + project.getId());
             notificationRepo.save(n);
 
             return ResponseEntity.ok("Project Added Successfully");
@@ -199,12 +200,13 @@ public class ProjectController {
 
         projectRepository.deleteById(id);
 
-        // 🔥 ADMIN NOTIFICATION (DELETE)
+        // 🔥 ADMIN NOTIFICATION (DELETE) — informational: project is gone, no link
         Notification n = new Notification();
         n.setUserEmail("ADMIN");
         n.setMessage("Project Deleted: " + project.getName());
         n.setRead(false);
         n.setCreatedAt(LocalDateTime.now());
+        n.setLinkUrl(null); // informational — expands inline
         notificationRepo.save(n);
 
         return ResponseEntity.ok("Project Deleted Successfully");
@@ -271,12 +273,13 @@ public class ProjectController {
 
             projectRepository.save(project);
 
-            // 🔥 ADMIN NOTIFICATION (UPDATE)
+            // 🔥 ADMIN NOTIFICATION (UPDATE) — actionable: navigate to project dashboard
             Notification n = new Notification();
             n.setUserEmail("ADMIN");
             n.setMessage("Project Updated: " + project.getName());
             n.setRead(false);
             n.setCreatedAt(LocalDateTime.now());
+            n.setLinkUrl("/dashboard/" + project.getId());
             notificationRepo.save(n);
 
             return ResponseEntity.ok("Project Updated Successfully ✅");
@@ -331,12 +334,13 @@ public class ProjectController {
 
             projectRepository.save(project);
 
-            // 🔥 ADMIN NOTIFICATION (SIMPLE UPDATE)
+            // 🔥 ADMIN NOTIFICATION (SIMPLE UPDATE) — actionable: navigate to project dashboard
             Notification n = new Notification();
             n.setUserEmail("ADMIN");
             n.setMessage("Project Updated: " + project.getName());
             n.setRead(false);
             n.setCreatedAt(LocalDateTime.now());
+            n.setLinkUrl("/dashboard/" + project.getId());
             notificationRepo.save(n);
 
             return ResponseEntity.ok("Project Updated ✅");

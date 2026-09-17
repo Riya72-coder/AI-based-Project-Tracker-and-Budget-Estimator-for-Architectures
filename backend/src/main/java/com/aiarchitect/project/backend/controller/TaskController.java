@@ -54,6 +54,7 @@ public class TaskController {
                 userNotif.setMessage("New Task Assigned: " + task.getName());
                 userNotif.setRead(false);
                 userNotif.setCreatedAt(LocalDateTime.now());
+                userNotif.setLinkUrl("/tasks/manage/" + task.getProjectId()); // actionable: go to tasks
 
                 notificationRepo.save(userNotif);
             }
@@ -64,6 +65,7 @@ public class TaskController {
             adminNotif.setMessage("New Task Created: " + task.getName());
             adminNotif.setRead(false);
             adminNotif.setCreatedAt(LocalDateTime.now());
+            adminNotif.setLinkUrl("/tasks/manage/" + task.getProjectId()); // actionable
 
             notificationRepo.save(adminNotif);
 
@@ -158,6 +160,7 @@ public class TaskController {
                 userNotif.setMessage("Task Updated: " + task.getName() + " → " + task.getStatus());
                 userNotif.setRead(false);
                 userNotif.setCreatedAt(LocalDateTime.now());
+                userNotif.setLinkUrl("/tasks/manage/" + task.getProjectId()); // actionable
 
                 notificationRepo.save(userNotif);
             }
@@ -168,6 +171,7 @@ public class TaskController {
             adminNotif.setMessage("Task Updated: " + task.getName());
             adminNotif.setRead(false);
             adminNotif.setCreatedAt(LocalDateTime.now());
+            adminNotif.setLinkUrl("/tasks/manage/" + task.getProjectId()); // actionable
 
             notificationRepo.save(adminNotif);
 
@@ -204,6 +208,7 @@ public class TaskController {
             adminNotif.setMessage("Task Deleted: " + task.getName());
             adminNotif.setRead(false);
             adminNotif.setCreatedAt(LocalDateTime.now());
+            adminNotif.setLinkUrl(null); // informational — task is gone, expands inline
 
             notificationRepo.save(adminNotif);
 
