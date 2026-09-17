@@ -210,16 +210,16 @@ export default function Admin() {
   };
 
   return (
-    <main className="dashboard" style={{ padding: "30px 40px" }}>
-      <header className="project-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
-        <h1>Admin Control Panel</h1>
-        <button onClick={() => navigate("/projects")} className="back-btn" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid var(--border)", background: "white", cursor: "pointer" }}>
+    <main className="dashboard admin-page">
+      <header className="project-header">
+        <h1 style={{ margin: 0 }}>Admin Control Panel</h1>
+        <button onClick={() => navigate("/projects")} className="back-btn">
           Back to Projects
         </button>
       </header>
 
       {/* STATS OVERVIEW CARDS */}
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", marginBottom: "30px" }}>
+      <section className="admin-stats-grid" style={{ marginBottom: "30px" }}>
         <div className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "20px" }}>
           <h3 style={{ margin: 0, fontSize: "1rem", color: "var(--text-secondary)" }}>Total Projects</h3>
           <span style={{ fontSize: "2rem", fontWeight: 700, marginTop: "5px" }}>{stats.totalProjects}</span>

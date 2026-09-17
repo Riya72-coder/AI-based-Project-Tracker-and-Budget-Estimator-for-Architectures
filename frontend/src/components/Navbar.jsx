@@ -11,10 +11,16 @@ export default function Navbar() {
   const [notifications, setNotifications] = useState([]);
   const [showNotifDropdown, setShowNotifDropdown] = useState(false);
   const [expandedNotifId, setExpandedNotifId] = useState(null); // for inline informational expand
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
   const viewMode = localStorage.getItem("viewMode");
+
+  // Auto-close mobile menu on route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   // Extract active project id from query params or path params
   const queryParams = new URLSearchParams(location.search);
@@ -168,13 +174,25 @@ export default function Navbar() {
       </div>
 
       {token && (
-        <ul className="nav-links">
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          <i className={mobileMenuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
+        </button>
+      )}
+
+      {token && (
+        <ul className={`nav-links ${mobileMenuOpen ? "mobile-open" : ""}`}>
           {activeProjectId ? (
             <>
               <li>
                 <Link
                   to={viewMode === "admin" ? `/dashboard/${activeProjectId}?id=${activeProjectId}` : `/dashboard/${activeProjectId}`}
                   className={location.pathname.startsWith("/dashboard") ? "active" : ""}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
@@ -185,6 +203,7 @@ export default function Navbar() {
                     <Link
                       to={`/tasks/manage/${activeProjectId}`}
                       className={location.pathname.startsWith("/tasks/manage") ? "active" : ""}
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       Manage Tasks
                     </Link>
@@ -195,13 +214,21 @@ export default function Navbar() {
           ) : (
             <>
               <li>
-                <Link to="/projects" className={location.pathname === "/projects" ? "active" : ""}>
+                <Link
+                  to="/projects"
+                  className={location.pathname === "/projects" ? "active" : ""}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Projects
                 </Link>
               </li>
               {role === "ADMIN" && (
                 <li>
-                  <Link to="/admin" className={location.pathname === "/admin" ? "active" : ""}>
+                  <Link
+                    to="/admin"
+                    className={location.pathname === "/admin" ? "active" : ""}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Admin Panel
                   </Link>
                 </li>
@@ -209,12 +236,20 @@ export default function Navbar() {
             </>
           )}
           <li>
-            <Link to="/about" className={location.pathname === "/about" ? "active" : ""}>
+            <Link
+              to="/about"
+              className={location.pathname === "/about" ? "active" : ""}
+              onClick={() => setMobileMenuOpen(false)}
+            >
               About
             </Link>
           </li>
           <li>
-            <Link to="/contact" className={location.pathname === "/contact" ? "active" : ""}>
+            <Link
+              to="/contact"
+              className={location.pathname === "/contact" ? "active" : ""}
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Contact
             </Link>
           </li>
@@ -223,7 +258,10 @@ export default function Navbar() {
 
       {token && user && (
         <div className="navbar-user">
-          <span>👋 Welcome <span id="userName" style={{ fontWeight: 600 }}>{user.name}</span></span>
+          <span className="navbar-welcome">
+            👋 <span className="welcome-prefix">Welcome </span>
+            <span id="userName" style={{ fontWeight: 600 }}>{user.name}</span>
+          </span>
 
           {/* NOTIFICATION BELL */}
           <div style={{ position: "relative" }} ref={dropdownRef}>

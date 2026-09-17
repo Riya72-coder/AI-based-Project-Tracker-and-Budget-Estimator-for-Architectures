@@ -32,7 +32,7 @@ function AppContent() {
   const isAuthPage = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/";
 
   return (
-    <div id="root" style={{ width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div className="app-container" style={{ width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       {/* Dynamic Navbar */}
       {!isAuthPage && <Navbar />}
 

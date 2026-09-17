@@ -183,7 +183,7 @@ export default function ArchiAI() {
       </div>
 
       {/* CHAT CONTAINER */}
-      <div id="chat-container" className={isOpen ? "chat-open" : ""}>
+      <div id="chat-container" className={isOpen ? "chat-open active" : ""}>
         {/* HEADER */}
         <div id="chat-header">
           <div className="chat-brand">

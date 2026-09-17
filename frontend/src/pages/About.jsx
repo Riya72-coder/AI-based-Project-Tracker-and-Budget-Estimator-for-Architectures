@@ -43,7 +43,7 @@ export default function About() {
       </section>
 
       {/* STATS */}
-      <section className="stats-section" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", padding: "40px 20px", maxWidth: "1200px", margin: "0 auto" }}>
+      <section className="stats-section">
         <div className="stat-card" style={{ background: "white", padding: "30px 20px", borderRadius: "12px", textAlign: "center", boxShadow: "var(--shadow-sm)" }}>
           <h2 style={{ fontSize: "2.2rem", color: "var(--green-500)", margin: "0 0 10px 0" }} id="projectsCount">{stats.projects}</h2>
           <p style={{ margin: 0, color: "var(--text-secondary)", fontWeight: 500 }}>Projects Built</p>
@@ -63,8 +63,8 @@ export default function About() {
       </section>
 
       {/* WHO WE ARE */}
-      <section className="about-section" style={{ padding: "60px 20px", maxWidth: "1200px", margin: "0 auto" }}>
-        <div className="about-container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "50px", alignItems: "center" }}>
+      <section className="about-section">
+        <div className="about-container">
           <div className="about-text">
             <h2 style={{ fontSize: "2rem", marginBottom: "20px" }}>Who We Are</h2>
             <p style={{ color: "var(--text-secondary)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "30px" }}>
@@ -83,7 +83,7 @@ export default function About() {
       </section>
 
       {/* MISSION / VISION */}
-      <section className="mission-section" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", padding: "40px 20px", maxWidth: "1200px", margin: "0 auto" }}>
+      <section className="mission-section">
         <div className="mission-card" style={{ background: "white", padding: "30px", borderRadius: "12px", boxShadow: "var(--shadow-sm)" }}>
           <h3 style={{ fontSize: "1.3rem", marginBottom: "15px" }}>🎯 Our Mission</h3>
           <p style={{ color: "var(--text-secondary)", margin: 0, lineHeight: 1.6 }}>
@@ -112,9 +112,9 @@ export default function About() {
       </section>
 
       {/* TEAM MEMBERS */}
-      <section className="team-section" style={{ padding: "60px 20px", maxWidth: "1200px", margin: "0 auto" }}>
+      <section className="team-section">
         <h2 style={{ textAlign: "center", fontSize: "2rem", marginBottom: "40px" }}>Meet Our Team</h2>
-        <div className="team-container" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "30px" }}>
+        <div className="team-container">
           
           <div className="team-card" style={{ background: "white", padding: "30px 20px", borderRadius: "12px", textAlign: "center", boxShadow: "var(--shadow-sm)" }}>
             <img src="/images/mansi1.jpg" alt="Mansi Kokate" style={{ width: "120px", height: "120px", borderRadius: "50%", objectFit: "cover", marginBottom: "15px", border: "3px solid var(--border)" }} />

@@ -177,18 +177,18 @@ export default function Profile() {
   const isAdmin = user.role === "ADMIN";
 
   return (
-    <main className="dashboard" style={{ padding: "30px 40px" }}>
-      <header className="project-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
-        <h1>User Profile</h1>
-        <button onClick={() => navigate(-1)} className="back-btn" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid var(--border)", background: "white", cursor: "pointer" }}>
+    <main className="dashboard profile-page">
+      <header className="project-header">
+        <h1 style={{ margin: 0 }}>User Profile</h1>
+        <button onClick={() => navigate(-1)} className="back-btn">
           ← Back
         </button>
       </header>
 
-      <div className="profile-container" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "30px" }}>
+      <div className="profile-container">
         
         {/* LEFT COLUMN: AVATAR & BASIC DETAILS */}
-        <div className="card" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "35px 20px" }}>
+        <div className="card profile-user-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "35px 20px" }}>
           <img 
             src={profileImgSrc} 
             id="profileImg" 
@@ -234,12 +234,12 @@ export default function Profile() {
         </div>
 
         {/* RIGHT COLUMN: STATS & ACTIVITIES */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+        <div className="profile-content-col" style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
           
           {/* Project statistics */}
           <div className="card">
             <h3>Project Statistics</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "15px", marginTop: "20px", textAlign: "center" }}>
+            <div className="profile-stats-grid stats-4-col">
               <div style={{ padding: "15px", background: "var(--bg-subtle)", borderRadius: "8px" }}>
                 <div style={{ fontSize: "1.8rem", fontWeight: "bold" }} id="totalProjects">{projectStats.total}</div>
                 <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>Total</div>
@@ -263,7 +263,7 @@ export default function Profile() {
           {!isAdmin && (
             <div className="card" id="userSection">
               <h3>Task Workload Details</h3>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "15px", marginTop: "20px", textAlign: "center" }}>
+              <div className="profile-stats-grid stats-3-col">
                 <div style={{ padding: "15px", background: "var(--bg-subtle)", borderRadius: "8px" }}>
                   <div style={{ fontSize: "1.8rem", fontWeight: "bold" }} id="totalTasks">{userTaskStats.total}</div>
                   <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>Assigned</div>
@@ -284,7 +284,7 @@ export default function Profile() {
           {isAdmin && (
             <div className="card" id="adminSection">
               <h3>System Overview Stats</h3>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "15px", marginTop: "20px", textAlign: "center" }}>
+              <div className="profile-stats-grid stats-3-col">
                 <div style={{ padding: "15px", background: "var(--bg-subtle)", borderRadius: "8px" }}>
                   <div style={{ fontSize: "1.8rem", fontWeight: "bold" }} id="totalUsers">{adminStats.totalUsers}</div>
                   <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>Total Users</div>

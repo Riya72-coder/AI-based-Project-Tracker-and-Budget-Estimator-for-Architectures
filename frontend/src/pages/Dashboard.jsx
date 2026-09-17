@@ -231,7 +231,7 @@ export default function Dashboard() {
   const modelPath = getModelFromText(project.name + " " + (project.description || ""));
 
   return (
-    <main className="dashboard" style={{ padding: "30px 40px" }}>
+    <main className="dashboard dashboard-page">
       
       {/* Eye-catching admin view alert banner */}
       {isAdminView && (
@@ -241,14 +241,14 @@ export default function Dashboard() {
       )}
 
       {/* PREMIUM HEADER */}
-      <section className="project-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "30px" }}>
+      <section className="project-header dashboard-header">
         <div className="project-left">
           <h1 id="projectName" style={{ margin: "0 0 10px 0" }}>{project.name}</h1>
           <p className="desc" id="projectDesc" style={{ color: "var(--text-secondary)", maxWidth: "800px", marginBottom: "15px" }}>
             {project.description || "No project description provided."}
           </p>
 
-          <div className="project-meta" style={{ display: "flex", gap: "20px", flexWrap: "wrap", fontSize: "0.9rem" }}>
+          <div className="project-meta">
             <span>📅 Deadline: <b id="projectDeadline">{project.deadline ? project.deadline.split("T")[0] : "--"}</b></span>
             <span>⏳ Timeframe: <b id="daysLeft" style={{ color: daysLeftColor }}>{daysLeftText}</b></span>
             {project.userEmail && (
@@ -261,7 +261,7 @@ export default function Dashboard() {
         </div>
 
         <div className="project-right">
-          <Link to={isAdminView ? "/admin" : "/projects"} className="back-btn" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid var(--border)", textDecoration: "none", color: "var(--text-primary)", display: "inline-block", transition: "0.2s" }}>
+          <Link to={isAdminView ? "/admin" : "/projects"} className="back-btn">
             ← Back
           </Link>
         </div>
@@ -417,9 +417,9 @@ export default function Dashboard() {
         </div>
 
         {/* 3D Model View */}
-        <div className="card" style={{ gridColumn: "span 2", minHeight: "420px" }}>
+        <div className="card card-render-3d">
           <h3>3D Architectural Render</h3>
-          <div style={{ marginTop: "15px", borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border)" }}>
+          <div className="model-viewer-wrapper" style={{ marginTop: "15px", borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border)" }}>
             <model-viewer 
               id="modelViewer"
               src={modelPath}

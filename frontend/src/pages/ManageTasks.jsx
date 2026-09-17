@@ -225,27 +225,27 @@ export default function ManageTasks() {
   };
 
   return (
-    <main className="dashboard" style={{ padding: "30px 40px" }}>
-      <header className="project-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
-        <div>
+    <main className="dashboard tasks-page">
+      <header className="project-header">
+        <div className="project-header-title">
           <h1 style={{ margin: 0 }}>Manage Tasks</h1>
           <p style={{ margin: "5px 0 0 0", color: "var(--text-secondary)" }}>
             Project: <b>{project?.name || "Loading..."}</b>
           </p>
         </div>
 
-        <div style={{ display: "flex", gap: "10px" }}>
-          <button className="add-project-btn" onClick={() => setShowAddModal(true)} style={{ display: "flex", alignItems: "center", gap: "8px", height: "40px" }}>
+        <div className="project-header-actions">
+          <button className="add-project-btn" onClick={() => setShowAddModal(true)}>
             <i className="fa-solid fa-plus"></i> Add Task
           </button>
-          <Link to={`/dashboard/${projectId}`} className="back-btn" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid var(--border)", textDecoration: "none", color: "var(--text-primary)", display: "flex", alignItems: "center", height: "40px" }}>
+          <Link to={`/dashboard/${projectId}`} className="back-btn">
             Back to Dashboard
           </Link>
         </div>
       </header>
 
       {/* FILTER BUTTONS */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+      <div className="task-filters">
         <button 
           onClick={() => handleFilterChange("all")} 
           style={{ padding: "8px 15px", borderRadius: "8px", border: "1px solid var(--border)", background: activeFilter === "all" ? "var(--green-500)" : "white", color: activeFilter === "all" ? "white" : "var(--text-primary)", cursor: "pointer", transition: "0.2s" }}
@@ -273,7 +273,7 @@ export default function ManageTasks() {
       </div>
 
       {/* TASKS LIST */}
-      <div id="taskContainer" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "20px" }}>
+      <div id="taskContainer" className="task-grid">
         {filteredTasks.length === 0 ? (
           <p style={{ gridColumn: "span 3", textAlign: "center", color: "var(--text-secondary)", padding: "40px" }}>No tasks found 🚀</p>
         ) : (

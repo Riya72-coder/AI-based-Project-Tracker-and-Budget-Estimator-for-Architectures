@@ -249,23 +249,23 @@ export default function Projects() {
   const isAdmin = user.role === "ADMIN";
 
   return (
-    <main className="dashboard" style={{ padding: "30px 40px" }}>
-      <header className="project-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
-        <div>
+    <main className="dashboard project-dashboard">
+      <header className="project-header">
+        <div className="project-header-title">
           <h1 style={{ margin: 0 }}>{isAdmin ? "All Projects" : "Your Projects"}</h1>
         </div>
 
         {/* Dynamic header items */}
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+        <div className="project-header-actions">
           {/* SEARCH */}
-          <div className="navbar-search" style={{ position: "relative", display: "flex", alignItems: "center" }}>
-            <i className="fa-solid fa-magnifying-glass" style={{ position: "absolute", left: "15px", color: "var(--text-secondary)" }}></i>
+          <div className="navbar-search project-search">
+            <i className="fa-solid fa-magnifying-glass search-icon"></i>
             <input
               type="text"
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ paddingLeft: "40px", borderRadius: "8px", border: "1px solid var(--border)", height: "40px", width: "250px" }}
+              className="search-input"
             />
           </div>
 
@@ -275,7 +275,7 @@ export default function Projects() {
               id="userFilter" 
               value={selectedUserFilter}
               onChange={handleUserFilterChange}
-              style={{ padding: "8px 15px", borderRadius: "8px", border: "1px solid var(--border)", height: "40px" }}
+              className="user-filter-select"
             >
               <option value="all">All Users</option>
               {userFilterOptions.map((email) => (
@@ -285,7 +285,7 @@ export default function Projects() {
           )}
 
           {!isAdmin && (
-            <button className="add-project-btn" onClick={() => setShowAddModal(true)} style={{ padding: "0 20px", height: "40px", display: "flex", alignItems: "center", gap: "8px" }}>
+            <button className="add-project-btn" onClick={() => setShowAddModal(true)}>
               <i className="fa-solid fa-plus"></i> Add Project
             </button>
           )}
