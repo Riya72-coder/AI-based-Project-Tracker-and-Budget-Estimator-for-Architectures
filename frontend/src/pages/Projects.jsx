@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
   const navigate = useNavigate();
-  
+
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [userFilterOptions, setUserFilterOptions] = useState([]);
@@ -14,7 +14,7 @@ export default function Projects() {
   // Modals state
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  
+
   // Form fields for Add/Edit
   const [projectName, setProjectName] = useState("");
   const [projectDesc, setProjectDesc] = useState("");
@@ -61,7 +61,7 @@ export default function Projects() {
         headers: { Authorization: "Bearer " + token },
       });
       const data = await res.json();
-      
+
       setProjects(data || []);
       setFilteredProjects(data || []);
 
@@ -271,8 +271,8 @@ export default function Projects() {
 
           {/* ADMIN FILTER */}
           {isAdmin && (
-            <select 
-              id="userFilter" 
+            <select
+              id="userFilter"
               value={selectedUserFilter}
               onChange={handleUserFilterChange}
               className="user-filter-select"
@@ -309,9 +309,9 @@ export default function Projects() {
               : "/images/default.png";
 
             return (
-              <div 
-                key={p.id} 
-                className="project-card" 
+              <div
+                key={p.id}
+                className="project-card"
                 onClick={() => {
                   if (isAdmin) {
                     // Admins get read-only dashboard with viewMode parameter
@@ -326,15 +326,15 @@ export default function Projects() {
               >
                 {(isOwner || isAdmin) && (
                   <div style={{ position: "absolute", top: "10px", right: "10px", zIndex: 10, display: "flex", gap: "5px" }}>
-                    <button 
-                      className="edit-btn" 
+                    <button
+                      className="edit-btn"
                       onClick={(e) => openEditProject(e, p)}
                       style={{ background: "rgba(255, 255, 255, 0.9)", border: "none", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-sm)" }}
                     >
                       <i className="fa-solid fa-pen" style={{ color: "var(--text-primary)", fontSize: "0.8rem" }}></i>
                     </button>
-                    <button 
-                      className="delete-btn" 
+                    <button
+                      className="delete-btn"
                       onClick={(e) => handleDeleteProject(e, p.id)}
                       style={{ background: "rgba(255, 255, 255, 0.9)", border: "none", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-sm)" }}
                     >
